@@ -70,7 +70,7 @@ function Navbar({ theme, toggle_mode }) {
         <div className="flex justify-center w-full">
           <a href="#">
             <img
-              src={logo}
+              src="#"
               alt="Logo"
               className="w-30 hover:scale-105 transition-all"
             />
@@ -136,32 +136,40 @@ function Navbar({ theme, toggle_mode }) {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        ref={menuRef}
-        className={`absolute xl-hidden top-24 w-full flex flex-col items-center gap-8 font-semibold text-lg transform transition-transform ${
-          isMenuOpen
-            ? "opacity-100 translate-y-0 scale-95 pointer-events-auto"
-            : "opacity-0 -translate-y-10 scale-95 pointer-events-none"
-        } ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}
-        style={{
-          zIndex: 30,
-          transition: "transform 0.3s ease, opacity 0.3s ease",
-        }}
-      >
-        <ul className="w-full flex flex-col items-center">
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <a
-                href={item.link}
-                className="list-none w-full text-center p-4 hover:rounded-3xl transition-all cursor-pointer hover:shadow-lg hover:scale-90"
-                onClick={() => setIsMenuOpen(false)} // Close menu on click
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* Mobile Menu */}
+<div
+  ref={menuRef}
+  className={`absolute top-full left-0 w-full flex flex-col items-center gap-4 py-4 font-semibold text-lg transform transition-transform duration-300 ${
+    isMenuOpen
+      ? "opacity-100 translate-y-0 pointer-events-auto"
+      : "opacity-0 -translate-y-5 pointer-events-none"
+  } ${
+    theme === "light" ? "bg-white text-black" : "bg-black text-white"
+  }`}
+  style={{
+    zIndex: 30,
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+  }}
+>
+  <ul className="w-full flex flex-col items-center">
+    {menuItems.map((item, index) => (
+      <li key={index} className="w-full">
+        <a
+          href={item.link}
+          className={`block text-center py-3 px-6 rounded-lg transition-all duration-300 ${
+            theme === "dark"
+              ? "hover:bg-white hover:text-black"
+              : "hover:bg-black hover:text-white"
+          }`}
+          onClick={() => setIsMenuOpen(false)} // Close menu on click
+        >
+          {item.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
     </header>
   );
 }
